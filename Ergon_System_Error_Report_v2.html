@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075985">
+<title>Ergon System Error Report</title>
+<style>
+:root{--navy:#092b3f;--blue:#0b6e9e;--cyan:#20b8d7;--ink:#123245;--muted:#6f8490;--line:#dce8ee;--surface:rgba(255,255,255,.94);--danger:#c92d3a;--shadow:0 18px 45px rgba(10,45,65,.12)}
+*{box-sizing:border-box}html{background:#eef4f6}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 5%,rgba(32,184,215,.12),transparent 30%),linear-gradient(180deg,#edf5f8 0,#f7fafb 420px,#eef4f6 100%);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(9,43,63,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(9,43,63,.8) 1px,transparent 1px);background-size:32px 32px}
+.header{position:relative;z-index:2;background:linear-gradient(135deg,#06283a,#0a5574 55%,#087f9e);color:#fff;padding:20px 18px 24px;box-shadow:0 10px 35px rgba(3,37,52,.22);overflow:hidden}.header:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-90px;top:-110px}.headerrow{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;max-width:760px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 1px rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.12);display:grid;place-items:center;position:relative}.brandmark:before,.brandmark:after{content:"";position:absolute;border:2.5px solid #fff;border-radius:50%}.brandmark:before{width:22px;height:22px;left:9px;top:9px;border-right-color:transparent;transform:rotate(-35deg)}.brandmark:after{width:22px;height:22px;right:9px;bottom:9px;border-left-color:transparent;transform:rotate(-35deg)}.brandtext b{display:block;font-size:18px;letter-spacing:.12em}.brandtext span{display:block;margin-top:3px;font-size:11px;letter-spacing:.14em;opacity:.72}.header-right{text-align:right}.header-right .live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);padding:7px 10px;border-radius:999px}.dot{width:7px;height:7px;border-radius:50%;background:#69e3a6;box-shadow:0 0 0 4px rgba(105,227,166,.13)}
+main{position:relative;z-index:1;max-width:760px;margin:auto;padding:18px 14px 105px}.hero-title{margin:2px 4px 15px}.hero-title h1{font-size:28px;line-height:1.08;margin:0;letter-spacing:-.04em}.hero-title p{margin:8px 0 0;color:var(--muted);font-size:13px}.card{background:var(--surface);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(214,228,235,.95);border-radius:24px;padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head h2,h2{margin:0;font-size:20px;letter-spacing:-.025em}.section-head small{color:var(--muted);font-weight:700}.muted{color:var(--muted);font-size:13px;line-height:1.45}label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin:17px 0 7px;color:#365363}
+select,.input,textarea{width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;padding:14px 14px;font-size:16px;color:var(--ink);outline:none;box-shadow:0 3px 10px rgba(12,48,68,.035);transition:.2s}select:focus,.input:focus,textarea:focus{border-color:#56bad2;box-shadow:0 0 0 4px rgba(32,184,215,.11)}textarea{min-height:110px;resize:vertical}.photo{border:1.5px dashed #a8cbd8;border-radius:20px;padding:16px;background:linear-gradient(180deg,#f6fcfe,#eff8fa);margin-top:14px}.photo-head{display:flex;align-items:center;gap:12px}.camera-icon{width:44px;height:44px;border-radius:14px;background:#e0f4f8;display:grid;place-items:center;font-size:21px}.photo-copy b{display:block;font-size:15px}.photo-copy span{display:block;color:var(--muted);font-size:12px;margin-top:3px}.upload-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:13px;padding:13px;border-radius:13px;background:#fff;border:1px solid #cfe2e9;color:var(--navy);font-weight:800;box-shadow:0 5px 14px rgba(15,55,72,.06);cursor:pointer}.preview{display:none;width:100%;max-height:290px;object-fit:cover;border-radius:16px;margin-top:13px;cursor:pointer;box-shadow:0 10px 28px rgba(9,43,63,.12)}
+.btn{width:100%;border:0;border-radius:15px;padding:15px;font-size:15px;font-weight:850;color:#fff;margin-top:18px;cursor:pointer;box-shadow:0 12px 22px rgba(8,91,126,.2);transition:transform .12s,box-shadow .12s}.btn:active{transform:translateY(1px);box-shadow:0 7px 15px rgba(8,91,126,.17)}.btn.blue{background:linear-gradient(135deg,#075985,#10a6c6)}.red-delete{background:linear-gradient(135deg,#a91f2d,#e04b57);box-shadow:0 12px 22px rgba(169,31,45,.17)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.stat{padding:16px;border-radius:18px;border:1px solid rgba(215,229,235,.9);background:#fff;box-shadow:0 8px 22px rgba(15,45,65,.06)}.stat span{display:block;font-size:12px;color:var(--muted);font-weight:700}.stat b{display:block;font-size:29px;margin-top:7px;letter-spacing:-.04em}.stat .mini{display:block;font-size:10px;margin-top:3px;color:#94a5ad}.stat.red{border-top:4px solid #dc3d4b}.stat.orange{border-top:4px solid #ef8c37}.stat.yellow{border-top:4px solid #d6b21f}.stat.green{border-top:4px solid #2ca46f}
+.report{border:1px solid var(--line);border-radius:18px;padding:12px;margin:10px 0;background:#fff;box-shadow:0 7px 20px rgba(15,45,65,.055)}.report-row{display:flex;gap:12px;align-items:center}.report img,.thumb{width:76px;height:76px;object-fit:cover;border-radius:15px;cursor:pointer;flex:0 0 auto}.report-info{flex:1;min-width:0}.report-info b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.report-info div{font-size:12px;color:var(--muted);margin-top:5px}.tag{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:999px;background:#edf7fa;color:#17637b;font-size:10px;font-weight:850}.report-desc{margin-top:9px;font-size:14px}.empty{text-align:center;padding:35px 15px;color:var(--muted)}
+nav{position:fixed;left:12px;right:12px;bottom:12px;max-width:736px;margin:auto;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(207,223,230,.95);border-radius:21px;display:flex;z-index:20;box-shadow:0 15px 40px rgba(9,43,63,.16);padding:5px}nav button{flex:1;border:0;background:transparent;border-radius:16px;padding:9px 4px;font-size:11px;font-weight:750;color:#78909b;cursor:pointer}nav button.active{color:#075985;background:#eaf7fa;box-shadow:inset 0 0 0 1px rgba(13,132,163,.08)}.hidden{display:none!important}
+.modal{position:fixed;inset:0;background:rgba(4,20,30,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);z-index:50;display:flex;align-items:center;justify-content:center;padding:14px}.modal-box{width:min(720px,100%);max-height:94vh;overflow:auto;background:#f8fbfc;border:1px solid rgba(255,255,255,.28);border-radius:26px;padding:14px;position:relative;box-shadow:0 25px 70px rgba(0,0,0,.32)}.modal-close{position:absolute;right:12px;top:10px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(4,20,30,.72);color:#fff;font-size:24px;z-index:2}.modal-photo{width:100%;max-height:55vh;object-fit:contain;background:#081a25;border-radius:19px;margin-bottom:12px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.detail{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px;box-shadow:0 5px 15px rgba(15,45,65,.04)}.detail small{display:block;color:var(--muted);font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.04em}.detail strong{display:block;margin-top:4px;font-size:14px;word-break:break-word}.full{grid-column:1/-1}
+.watermark{position:fixed;z-index:0;right:-18px;top:44%;transform:rotate(-90deg);transform-origin:center;opacity:.035;pointer-events:none;display:flex;align-items:center;gap:18px}.watermark .wm-mark{width:70px;height:70px;border:7px solid var(--navy);border-radius:50%;position:relative}.watermark .wm-mark:after{content:"";position:absolute;inset:12px;border:7px solid var(--navy);border-left-color:transparent;border-radius:50%;transform:rotate(45deg)}.watermark b{font-size:82px;letter-spacing:.08em;color:var(--navy)}
+@media(max-width:420px){.detail-grid{grid-template-columns:1fr}.hero-title h1{font-size:25px}.brandtext b{font-size:16px}.header-right{display:none}}
+</style>
+</head>
+<body>
+<header class="header"><div class="headerrow"><div class="brand"><div class="brandmark"></div><div class="brandtext"><b>ERGON</b><span>SYSTEM ERROR REPORT</span></div></div><div class="header-right"><div class="live"><span class="dot"></span> SYSTEM ONLINE</div></div></div></header>
+
+<div class="watermark"><div class="wm-mark"></div><b>ERGON</b></div>
+<main>
+<section id="new" class="page">
+<div class="hero-title"><h1>System Error Report</h1><p>Fast reporting • Clear information • Better workflow</p></div>
+<div class="card">
+<div class="section-head"><h2>Newe melding</h2><small>REPORT</small></div><p class="muted">Capture the issue, select the department and send the report.</p>
+<div class="photo">
+<div class="photo-head"><div class="camera-icon">📷</div><div class="photo-copy"><b>Evidence photo</b><span>Take a photo or select an image</span></div></div>
+<label for="photo" class="upload-btn">＋ Add photo</label>
+<input id="photo" type="file" accept="image/*" capture="environment" style="display:none">
+<img id="preview" class="preview">
+</div>
+<label>Fouttype</label>
+<select id="type"><option>Afdelingsgroep onbekend</option><option>Hangkleding aanwezig / ontbreekt</option><option>Kleurblok fout</option><option>Pickbon fout</option><option>Scan mislukt</option><option>Route fout</option><option>Bijpak probleem</option><option>Anders</option></select>
+<label>Medewerker (optioneel)</label><input id="worker" class="input" placeholder="Naam medewerker"><label>Afdeling</label>
+<select id="dept"><option>Vouwenplein-PGG</option><option>Scan-Bak &amp; UTJ</option><option>Pick-Hang</option><option>Finisher &amp; Careousell</option><option>Magazijn &amp; ScanTunnel</option><option>Bijpak rond</option><option>Vuilsorteerband</option></select>
+<label>Beschrijving</label><textarea id="desc" placeholder="Describe what happened..."></textarea>
+<button class="btn blue" onclick="saveReport()">➤  Submit report</button>
+</div>
+</section>
+
+<section id="reports" class="page hidden">
+<div class="card"><div class="section-head"><h2>Recent reports</h2><small>LAST 100</small></div><div id="list"></div></div>
+</section>
+
+<section id="stats" class="page hidden">
+<div class="card"><div class="section-head"><h2>Dashboard</h2><small>LIVE</small></div>
+<div class="grid">
+<div class="stat red"><span>Scanfouten</span><b id="s1">0</b></div>
+<div class="stat orange"><span>Kleurblok</span><b id="s2">0</b></div>
+<div class="stat yellow"><span>Pickbon</span><b id="s3">0</b></div>
+<div class="stat green"><span>Overige</span><b id="s4">0</b></div>
+</div></div>
+<div class="card"><h2>Today</h2><p id="today">0 reports</p><p class="muted">Data is securely stored in Firebase.</p></div>
+</section>
+</main>
+
+<nav>
+<button class="active" onclick="show('new',this)">⌂<br>New</button>
+<button onclick="show('reports',this)">▤<br>Reports</button>
+<button onclick="show('stats',this)">◫<br>Statistics</button>
+</nav>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA6wJsohO3-T4hfOLEyxGKaS6VP91iR79M",
+  authDomain: "wsp-error-reporter.firebaseapp.com",
+  projectId: "wsp-error-reporter",
+  storageBucket: "wsp-error-reporter.firebasestorage.app",
+  messagingSenderId: "947965268665",
+  appId: "1:947965268665:web:21ea620ec360180dee0168",
+  measurementId: "G-G4HYY0GGHZ"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
+<script>
+let reports = [];
+let selectedImage = "";
+
+const $ = id => document.getElementById(id);
+
+$("photo").onchange = e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    $("preview").src = r.result;
+    $("preview").style.display = "block";
+    selectedImage = r.result;
+  };
+  r.readAsDataURL(f);
+};
+
+function compressImage(dataUrl) {
+  return new Promise(resolve => {
+    if (!dataUrl) return resolve("");
+    const img = new Image();
+    img.onload = () => {
+      const max = 700;
+      let w = img.width, h = img.height;
+      if (w > h && w > max) { h = Math.round(h * max / w); w = max; }
+      else if (h >= w && h > max) { w = Math.round(w * max / h); h = max; }
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      resolve(c.toDataURL("image/jpeg", 0.45));
+    };
+    img.onerror = () => resolve("");
+    img.src = dataUrl;
+  });
+}
+
+async function saveReport() {
+  const btn = document.querySelector(".btn.blue");
+  btn.disabled = true;
+  btn.textContent = "⏳ Submitting...";
+
+  try {
+    const now = new Date();
+    const reportId = "SER-" + now.getFullYear() + "-" + String(Date.now()).slice(-6);
+    const img = await compressImage(selectedImage);
+
+    if (img.length > 700000) throw new Error("Foto is te groot. Maak een nieuwe foto.");
+
+    const r = {
+      reportId,
+      worker: $("worker").value.trim() || "Onbekend",
+      type: $("type").value,
+      dept: $("dept").value,
+      desc: $("desc").value.trim() || "Geen extra beschrijving.",
+      date: now.toLocaleString("nl-NL"),
+      status: "New",
+      img,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    await db.collection("reports").add(r);
+
+    alert("Report submitted! ID: " + reportId);
+    $("desc").value = "";
+    $("worker").value = "";
+    $("photo").value = "";
+    $("preview").style.display = "none";
+    selectedImage = "";
+
+    await loadReports();
+    show("reports", document.querySelectorAll("nav button")[1]);
+  } catch (e) {
+    console.error(e);
+    alert("Submission failed: " + (e.message || "Check the connection and Firebase settings."));
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "➤  Submit report";
+  }
+}
+
+function fromDoc(d) {
+  const f = d.data() || {};
+  return {
+    id: d.id,
+    reportId: f.reportId || "",
+    worker: f.worker || "",
+    type: f.type || "",
+    dept: f.dept || "",
+    desc: f.desc || "",
+    date: f.date || "",
+    status: f.status || "",
+    img: f.img || ""
+  };
+}
+
+async function loadReports() {
+  try {
+    const snap = await db.collection("reports").orderBy("createdAt", "desc").limit(100).get();
+    reports = snap.docs.map(fromDoc);
+    render();
+  } catch (e) {
+    try {
+      const snap = await db.collection("reports").limit(100).get();
+      reports = snap.docs.map(fromDoc).reverse();
+      render();
+    } catch (e2) {
+      console.error(e2);
+      $("list").innerHTML = '<p class="muted">Reports could not be loaded.</p>';
+    }
+  }
+}
+
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, m => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[m]));
+}
+
+function render() {
+  const list = $("list");
+  list.innerHTML = reports.length ? "" : '<p class="muted">No reports yet.</p>';
+  reports.forEach(r => {
+    list.innerHTML += `<div class="report">
+      ${r.img ? `<img class="thumb" src="${r.img}" onclick="openPhotoModal(${reports.indexOf(r)})">` : '<div class="thumb">📷</div>'}
+      <div><b>${esc(r.type)}</b>
+      <div class="muted">${esc(r.reportId)} · ${esc(r.worker)}</div>
+      <span class="tag">${esc(r.dept)}</span>
+      <div class="muted">${esc(r.date)}</div></div>
+    </div>`;
+  });
+
+  let c = {scan:0,kleur:0,pick:0,other:0};
+  reports.forEach(r => {
+    if ((r.type||"").includes("Scan")) c.scan++;
+    else if ((r.type||"").includes("Kleurblok")) c.kleur++;
+    else if ((r.type||"").includes("Pickbon")) c.pick++;
+    else c.other++;
+  });
+  $("s1").textContent = c.scan;
+  $("s2").textContent = c.kleur;
+  $("s3").textContent = c.pick;
+  $("s4").textContent = c.other;
+  const d = new Date().toLocaleDateString("nl-NL");
+  $("today").textContent = reports.filter(r => (r.date||"").startsWith(d)).length + " reports";
+}
+
+function show(id, btn) {
+  document.querySelectorAll(".page").forEach(x => x.classList.add("hidden"));
+  $(id).classList.remove("hidden");
+  document.querySelectorAll("nav button").forEach(x => x.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  render();
+}
+
+loadReports();
+function openPhotoModal(i){
+const r=reports[i]; if(!r||!r.img)return;
+$("modalPhoto").src=r.img;$("mId").textContent=r.reportId||"-";$("mDate").textContent=r.date||"-";
+$("mWorker").textContent=r.worker||"Onbekend";$("mDept").textContent=r.dept||"-";
+$("mType").textContent=r.type||"-";$("mDesc").textContent=r.desc||"Geen extra beschrijving.";
+$("photoModal").classList.remove("hidden");
+}
+function closePhotoModal(){$("photoModal").classList.add("hidden");}
+</script>
+<div id="photoModal" class="modal hidden" onclick="if(event.target===this)closePhotoModal()">
+<div class="modal-box"><button class="modal-close" onclick="closePhotoModal()">×</button>
+<img id="modalPhoto" class="modal-photo" alt="Rapportfoto">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button class="btn blue" type="button" onclick="downloadReportPDF()">📄 PDF downloaden</button>
+<button class="btn red-delete" type="button" onclick="deleteCurrentReport()">🗑️ Verwijderen</button>
+</div><div class="detail-grid">
+<div class="detail"><small>Rapportnummer</small><strong id="mId"></strong></div>
+<div class="detail"><small>Datum en tijd</small><strong id="mDate"></strong></div>
+<div class="detail"><small>Medewerker</small><strong id="mWorker"></strong></div>
+<div class="detail"><small>Afdeling</small><strong id="mDept"></strong></div>
+<div class="detail full"><small>Fouttype</small><strong id="mType"></strong></div>
+<div class="detail full"><small>Beschrijving</small><strong id="mDesc"></strong></div>
+</div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function downloadReportPDF(){
+  const r = reports.find(x => x.reportId === $("mId").textContent);
+  if(!r) return;
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.text("System Error Report", 20, 20);
+    doc.setFontSize(11);
+    let y = 32;
+    const rows = [
+      ["Rapportnummer", r.reportId || "-"],
+      ["Datum en tijd", r.date || "-"],
+      ["Medewerker", r.worker || "Onbekend"],
+      ["Afdeling", r.dept || "-"],
+      ["Fouttype", r.type || "-"],
+      ["Beschrijving", r.desc || "Geen extra beschrijving."]
+    ];
+    rows.forEach(([label,value])=>{
+      doc.setFont(undefined,"bold"); doc.text(label + ":",20,y);
+      doc.setFont(undefined,"normal");
+      const lines = doc.splitTextToSize(String(value),155);
+      doc.text(lines,55,y);
+      y += Math.max(8, lines.length*6);
+    });
+    if(r.img){
+      try{
+        const img = await loadPdfImage(r.img);
+        const maxW=170, maxH=90;
+        let w=img.width, h=img.height;
+        const scale=Math.min(maxW/w,maxH/h,1);
+        w*=scale; h*=scale;
+        if(y+h>280){doc.addPage();y=20;}
+        doc.addImage(r.img,"JPEG",20,y,w,h);
+      }catch(e){}
+    }
+    doc.save((r.reportId || "System-Error-Report") + ".pdf");
+  }catch(e){
+    alert("PDF maken is mislukt.");
+    console.error(e);
+  }
+}
+
+async function deleteCurrentReport(){
+  const reportId = $("mId").textContent;
+  const r = reports.find(x => x.reportId === reportId);
+  if(!r) return;
+
+  const confirmed = confirm("Delete this report?\n\nRapport: " + reportId + "\n\nThis action cannot be undone.");
+  if(!confirmed) return;
+
+  try{
+    await db.collection("reports").doc(r.id).delete();
+    closePhotoModal();
+    await loadReports();
+    alert("Report deleted: " + reportId);
+  }catch(e){
+    console.error(e);
+    alert("Delete failed: " + (e.message || "Check your internet connection."));
+  }
+}
+
+function loadPdfImage(src){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onload=()=>resolve(img);
+    img.onerror=reject;
+    img.src=src;
+  });
+}
+</script></body>
+</html>
